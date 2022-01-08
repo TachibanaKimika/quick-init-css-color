@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Color from '@/utils/Color'
+import Color from '../../utils/Color'
 import './index.scss'
 
 /**

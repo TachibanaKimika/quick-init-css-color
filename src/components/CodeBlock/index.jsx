@@ -3,8 +3,8 @@ import copy from 'copy-to-clipboard';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
-import Button from '@/components/Button'
-import Color from '@/utils/Color'
+import Button from '../Button'
+import Color from '../../utils/Color'
 import './index.scss'
 
 

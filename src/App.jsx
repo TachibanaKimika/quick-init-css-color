@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { ChromePicker } from 'react-color';
-import CodeBlock from '@/components/CodeBlock'
-import ColorReview from '@/components/ColorReview'
-import Button from '@/components/Button'
-import Input from '@/components/Input'
+import CodeBlock from './components/CodeBlock'
+import ColorReview from './components/ColorReview'
+import Button from './components/Button'
+import Input from './components/Input'
 export default class App extends Component {
   state = {
     myColorList: new Set(), // Array<String>
