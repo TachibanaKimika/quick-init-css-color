@@ -1,0 +1,42 @@
+.c-color-review {
+  width: 600px;
+  height: 250px;
+  border-radius: 8px;
+  // overflow: hidden;
+  box-shadow: 0 0 6px  rgba(0, 0, 0, 0.5);
+  .ccr-color-header {
+    height: 50px;
+    padding: 5px;
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    border-radius: 8px 8px 0 0;
+    transition: all 0.1s ease-in-out;
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0 0 6px  rgba(0, 0, 0, 0.5);
+    }
+  }
+  .ccr-color-body {
+    display: flex;
+    .ccr-color-item {
+      height: 200px;
+      writing-mode: vertical-lr;
+      // font-weight: 700;
+      writing-mode: tb-lr;
+      font-size: 15px;
+      padding: 10px 3px;
+      transition: all 0.1s ease-in-out;
+      &:first-child {
+        border-radius: 0 0 0 8px;
+      }
+      &:last-child {
+        border-radius: 0 0 8px 0;
+      }
+      &:hover {
+        cursor: pointer;
+        box-shadow: 0 0 13px  rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
+}

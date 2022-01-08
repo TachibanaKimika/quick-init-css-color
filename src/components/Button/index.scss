@@ -1,0 +1,15 @@
+.c-button {
+  width: 100%;
+  height: 100%;
+  button {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+    }
+  }
+}
