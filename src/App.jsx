@@ -14,8 +14,8 @@ export default class App extends Component {
     this.setState({ nowColor: hex });
   };
   addColor2Set = (color, name) => {
-    console.log(color)
-    this.setState(({myColorList}) => ({myColorList: new Set(myColorList).add(JSON.stringify({name, color}))}))
+    // console.log(color)
+    this.setState(({myColorList}) => ({myColorList: new Set(myColorList).add(JSON.stringify({name, color: color.toLowerCase()}))}))
   }
   removeColorFromSet = (color, name) => {
     console.log(this.state.myColorList, color)
@@ -48,30 +48,29 @@ export default class App extends Component {
           <div className="main-intro">
             <div className="intro-left">
               <div className="title">
-                Quick Generate Your Style
+                快速生成样式的颜色变量
               </div>
               <div className="details">
-                Now ONLY support SCSS
+                现在支持 CSS/SCSS/LESS
               </div>
               <div className="todo">
               {todoList.map((item, index)=>(<div className="todo-item" key={index}>{item.content}</div>))}
               </div>
             </div>
             <div className="intro-right">
-              <CodeBlock color={'D966FF'} name="pink" />
+              <CodeBlock color={'d966ff'} name="pink" />
             </div>
           </div>
-          
           <div className="color-block-example">
-            <ColorReview color={'D966FF'}></ColorReview>
+            <ColorReview color={'d966ff'}></ColorReview>
           </div>
           <div className="input-area">
             <div className="left-area">
               <div className="title">
-                Add your color here!
+                在这里添加你的颜色
               </div>
               <div className="details">
-                balabalabalabalabala
+                在输入框中输入文字作为颜色变量的名称, 选择颜色之后点击添加即可.
               </div>
             </div>
             <div className="right-area">
@@ -87,7 +86,7 @@ export default class App extends Component {
                     }} value={this.state.nowColorName}/>
                   </div>
                   <div className="add-color-button">
-                    <Button onClick={() => this.addColor2Set(this.state.nowColor, this.state.nowColorName)}>Add</Button>
+                    <Button onClick={() => this.addColor2Set(this.state.nowColor, this.state.nowColorName)}>添加</Button>
                   </div>
                 </div>
               </div>
@@ -97,7 +96,7 @@ export default class App extends Component {
             <div className="my-colors-head">
               <div className="title">COLOR({colors.length})</div>
               <div className="hide-button">
-                <Button>hide</Button>
+                <Button>隐藏</Button>
               </div>
             </div>
             <div className="colors-main">

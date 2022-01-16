@@ -1,0 +1,16 @@
+#message-wrapper {
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  left: 50%;
+  margin: auto;
+  min-width: 200px;
+  padding: 5px;
+  position: fixed;
+  right: 50%;
+  top: 80px;
+  transform: translate(-50%, -50%);
+  transition: all 0.2s ease-in-out;
+  .c-message-main {
+    padding: 10px;
+  }
+}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import copy from 'copy-to-clipboard';
+import copy from '../../utils/copy'
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
@@ -19,27 +19,38 @@ export default class CodeBlock extends Component {
   state = {
     lang: 'scss'
   }
-  initScssString = (colors, name = 'name') => {
+  initScssString = (colors, name = 'name', lang='scss') => {
     let lightColorString = '', darkColorString = ''
-    colors.lightColors.forEach((ele, index)=>lightColorString += `$${name}-light-${index+1}: ${ele};\n`)
-    colors.darkColors.forEach((ele, index)=>darkColorString += `$${name}-dark-${index+1}: ${ele};\n`)
+    const variableWrap = (name, type) => {
+      switch(type) {
+        case 'scss':
+          return `$${name}`
+        case 'css':
+          return `var(--${name})`
+        case 'less':
+          return `@${name}`
+      }
+    }
+    colors.lightColors.forEach((ele, index)=>lightColorString += `${variableWrap(`${name}-light-${index+1}`, lang)}: ${ele};\n`)
+    colors.darkColors.forEach((ele, index)=>darkColorString += `${variableWrap(`${name}-dark-${index+1}`, lang)}: ${ele};\n`)
     return `
-// name: ${name}
-$${name}: ${colors.default};
+/** name: ${name} **/
+${variableWrap(name, lang)}: ${colors.default};
 ${lightColorString}
 ${darkColorString}
 `
   }
   render() {
-    const {name, color} = this.props
+    const {name, color, level=5} = this.props
+    const {lang} = this.state
     let codeString = ''
     if(typeof color == 'string') {
-      const colors = new Color(color, 12).getColors()
-      codeString = this.initScssString(colors, name)
+      const colors = new Color(color, level).getColors()
+      codeString = this.initScssString(colors, name, lang)
     } else if(color instanceof Array) {
       color.forEach(colorItem => {
-        const colors = new Color(colorItem.color, 12).getColors()
-        codeString += this.initScssString(colors, colorItem.name)
+        const colors = new Color(colorItem.color, level).getColors()
+        codeString += this.initScssString(colors, colorItem.name, lang)
       })
     }
 
@@ -48,13 +59,13 @@ ${darkColorString}
         <div className="c-code-block-header">
           <div className="ccb-lang-selector">
             <div className="ccb-button">
-              <Button>CSS</Button>
+              <Button onClick={() => this.setState({lang: 'css'})}>CSS</Button>
             </div>
             <div className="ccb-button">
-              <Button>SCSS</Button>
+              <Button onClick={() => this.setState({lang: 'scss'})}>SCSS</Button>
             </div>
             <div className="ccb-button">
-              <Button>LESS</Button>
+              <Button onClick={() => this.setState({lang: 'less'})}>LESS</Button>
             </div>
           </div>
           <div className="ccb-copy-button">
@@ -63,7 +74,7 @@ ${darkColorString}
             }}>Copy</Button>
           </div>
         </div>
-        <SyntaxHighlighter language={'scss'} style={docco}>
+        <SyntaxHighlighter language={lang} style={docco}>
           {codeString}
         </SyntaxHighlighter>
       </div>

@@ -1,6 +1,9 @@
 .c-code-block {
   height: 100%;
   width: 100%;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
   .c-code-block-header {
     height: 36px;
     display: flex;
